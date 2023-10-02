@@ -1,0 +1,18 @@
+name: Move file from develop to qar
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  move-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Move file
+        run: |
+          git checkout qar
+          git merge --no-ff develop
+          git push origin qar
